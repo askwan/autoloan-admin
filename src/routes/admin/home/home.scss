@@ -1,0 +1,27 @@
+.home-content{
+  .select-box{
+    height: 200px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    .num{
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .tip{
+      font-size: 20px;
+      font-weight: bolder;
+    }
+  }
+  .one{
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+  }
+  .two{
+    border: 1px solid #b7eb8f;
+    background: #f6ffed;
+  }
+  .three{
+    background-color: #fff1f0;
+    border: 1px solid #ffa39e;
+  }
+}
