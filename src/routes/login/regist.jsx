@@ -16,9 +16,9 @@ export class index extends Component {
   login=(e)=>{
     e.preventDefault();
     this.props.form.validateFields((err,values)=>{
-
+      values.serviceType = 2;
       if(!err){
-        console.log(values,'value');
+        this.props.dispatch({type:'global/regist',payload:values});
       }
     })
   }

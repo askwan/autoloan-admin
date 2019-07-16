@@ -15,10 +15,17 @@ export class index extends Component {
   }
   login=(e)=>{
     e.preventDefault();
-    this.props.form.validateFields((err,values)=>{
+    const {dispatch,form,history} = this.props;
+    form.validateFields((err,values)=>{
 
       if(!err){
         console.log(values,'value');
+        new Promise((resolve,reject)=>{
+          dispatch({type:'global/login',payload:{resolve,values}})
+        }).then(err=>{
+          history.push('/');
+          console.log(err);
+        })
       }
     })
   }

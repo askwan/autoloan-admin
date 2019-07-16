@@ -1,5 +1,5 @@
 
-
+import {userServer} from '@/services'
 export default {
 
   namespace: 'global',
@@ -31,6 +31,17 @@ export default {
     *fetch({ payload }, { call, put }) {  // eslint-disable-line
       yield put({ type: 'save' });
     },
+    *regist({payload},{call,put}){
+      let res = yield call(()=>userServer.regist(payload));
+      console.log(res,'res');
+    },
+    *login({payload},{call,put}){
+      let res = yield call(()=>userServer.login(payload.values));
+      if(typeof payload.resolve === 'function'){
+        payload.resolve(res);
+        window.localStorage.setItem('token',res.data.token);
+      }
+    }
   },
 
   reducers: {
