@@ -1,24 +1,42 @@
 import React, { Component } from 'react'
 import { connect } from 'dva'
 import './style.scss'
-import { Form, Input,Button } from 'antd';
+import { Form, Input,Button,message } from 'antd';
 import { Link } from 'dva/router';
-
+import logo from '../../assets/logo.png'
 const formItemLayout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 18 }
 };
 
+
 export class index extends Component {
   state={
 
+  }
+  validator = (rule,value,callback)=>{
+    let password = this.props.form.getFieldValue('password');
+    if(password !== value){
+      callback('密码不一致')
+    }else{
+      callback();
+    }
   }
   login=(e)=>{
     e.preventDefault();
     this.props.form.validateFields((err,values)=>{
       values.serviceType = 2;
       if(!err){
-        this.props.dispatch({type:'global/regist',payload:values});
+        new Promise((resolve,reject)=>{
+          this.props.dispatch({type:'global/regist',payload:{
+            values,resolve,reject
+          }});
+        }).then(res=>{
+          message.success('注册成功')
+          this.props.history.push('/login');
+        }).catch(err=>{
+          message.error(err.message);
+        })
       }
     })
   }
@@ -26,15 +44,18 @@ export class index extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className='fill'>
+        <div className="height-200"></div>
         <div className="login-box shadow pd-big">
-          <div className="logo"></div>
+          <div className="logo">
+            <img className="img-auto" src={logo} />
+          </div>
           <Form onSubmit={this.login} {...formItemLayout}>
             <Form.Item label='用户名'>
               {
                 getFieldDecorator('username',{
                   rules:[{required:true,'message':'请输入用户名'}]
                 })(
-                  <Input />
+                  <Input autoComplete="off" />
                 )
               }
             </Form.Item>
@@ -43,16 +64,16 @@ export class index extends Component {
                 getFieldDecorator('password',{
                   rules:[{required:true,'message':'请输入密码'}]
                 })(
-                  <Input />
+                  <Input.Password autoComplete="off" />
                 )
               }
             </Form.Item>
             <Form.Item label='确认密码'>
               {
-                getFieldDecorator('password',{
-                  rules:[{required:true,'message':'请确认密码'}]
+                getFieldDecorator('repassword',{
+                  rules:[{required:true,'message':'请确认密码'},{validator:this.validator}]
                 })(
-                  <Input />
+                  <Input.Password autoComplete="off" />
                 )
               }
             </Form.Item>

@@ -20,7 +20,6 @@ export default class Base {
           }
         })
         .catch(err => {
-
           reject(err)
         })
     })
@@ -123,8 +122,8 @@ export default class Base {
 
   _handle(resolve, reject, res,Type) {
     if (res.status === 200) {
-      if(typeof Type === 'function') {
-        res.data.items = res.data.items.map(el => new Type(el));
+      if(typeof Type === 'function' && res.data.list instanceof Array) {
+        res.data.list = res.data.list.map(el => new Type(el));
       }
       resolve(res.data)
     }else if(res.status === 450){
@@ -140,9 +139,14 @@ export default class Base {
   getToken() {
     let token = window.localStorage.getItem('token');
     let hash = window.location.hash;
+
     if( !hash.includes('login') && !hash.includes('regist')){
       if(!token) window.location.href = window.location.origin + window.location.pathname + '#/login';
-    }
+    };
+    if(typeof token !== "string") return ''
+    // if(!token){
+    //   return ""
+    // }
     return token;
   }
 

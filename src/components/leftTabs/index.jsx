@@ -14,7 +14,9 @@ export class index extends Component {
     history.push(url);
   }
   render() {
-    const {position} = this.props;
+    const {position,user} = this.props;
+    let time  = new Date();
+    
     return (
       <Sider>
           <div className='company-logo'>
@@ -24,20 +26,20 @@ export class index extends Component {
             <Title level={4} className='info-title'>用户信息</Title>
             <div className='flex font-gray mg-bottom-small'>
               <span>登陆人员：</span>
-              <span className="font-white">askwan</span>
+              <span className="font-white">{user.username}</span>
             </div>
-            <div className='flex font-gray  mg-bottom-small'>
+            {/* <div className='flex font-gray  mg-bottom-small'>
               <span>所属部门：</span>
               <span className="font-white">客服部</span>
-            </div>
+            </div> */}
             <div className='flex font-gray  mg-bottom-small'>
               <span>登录时间：</span>
-              <span className="font-white">2019-7-15</span>
+              <span className="font-white">{user.loginTime}</span>
             </div>
-            <div className='flex font-gray  mg-bottom-small'>
+            {/* <div className='flex font-gray  mg-bottom-small'>
               <span>个人代办：</span>
               <span className="font-white">askwan</span>
-            </div>
+            </div> */}
 
           </div>
           <Menu theme="dark" selectedKeys={[position]} mode="inline">
@@ -45,14 +47,14 @@ export class index extends Component {
               <Icon type="pie-chart" />
               <span>待审核</span>
             </Menu.Item>
-            <Menu.Item key="补录待审核" onClick={()=>this.pathTo('/admin/addtocheck')}>
+            {/* <Menu.Item key="补录待审核" onClick={()=>this.pathTo('/admin/addtocheck')}>
               <Icon type="desktop" />
               <span >补录待审核</span>
             </Menu.Item>
             <Menu.Item key="已拒绝" onClick={()=>this.pathTo('/admin/refused')}>
               <Icon type="desktop" />
               <span >已拒绝</span>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>
         </Sider>
     )

@@ -12,11 +12,14 @@ const { Header, Content } = Layout;
 const {Title,Text} = Typography
 
 class IndexPage extends React.Component {
+  componentDidMount(){
+    this.props.dispatch({type:'global/checkoutToken'})
+  }
   goBack = ()=>{
     this.props.history.push('/')
   }
   exit = ()=>{
-    window.sessionStorage.clear();
+    window.localStorage.clear();
     this.props.history.push('/login');
   }
   render() {
