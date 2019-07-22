@@ -23,7 +23,8 @@ export class index extends Component {
           dispatch({type:'global/login',payload:{resolve,values,reject}})
         }).then(res=>{
           window.localStorage.setItem('token',res.token);
-          history.push('/');
+          message.success('登陆成功');
+          history.push('/admin/home');
         }).catch(err=>{
           message.error(err.message);
         })
