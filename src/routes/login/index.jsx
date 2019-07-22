@@ -37,7 +37,7 @@ export class index extends Component {
         <div className="height-200"></div>
         <div className="login-box shadow pd-big">
           <div className="logo">
-            <img className="img-auto" src={logo} />
+            <img className="img-auto" src={logo} alt='加载失败' />
           </div>
           <Form onSubmit={this.login} {...formItemLayout}>
             <Form.Item label='用户名'>

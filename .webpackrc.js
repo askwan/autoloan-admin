@@ -5,10 +5,18 @@ export default {
   ],
   "publicPath":"/",
   alias:{
-    '@':path.resolve(__dirname, "src")
+    '@':path.resolve(__dirname, "./src")
   },
   disableCSSModules:true,
   define:{
     "USE_COMMA":'wuhao'
+  },
+  env:{
+    development:{
+      "publicPath":"/",
+    },
+    production:{
+      "publicPath":"./",
+    }
   }
 }

@@ -9,7 +9,6 @@ const {Title} = Typography;
 export class index extends Component {
   render() {
     const {stat}= this.props;
-    console.log(stat,'stat')
     return (
       <div className='home-content'>
         <Title level={4}>工作统计</Title>

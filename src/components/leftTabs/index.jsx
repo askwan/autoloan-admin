@@ -15,8 +15,7 @@ export class index extends Component {
   }
   render() {
     const {position,user} = this.props;
-    let time  = new Date();
-    
+
     return (
       <Sider>
           <div className='company-logo'>

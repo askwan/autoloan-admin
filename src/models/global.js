@@ -56,8 +56,12 @@ export default {
       }
     },
     *checkoutToken({payload},{call,put}){
-      let res = yield call(()=>userServer.checkToken());
-      yield put({type:'setUser',payload:res})
+      try {
+        let res = yield call(()=>userServer.checkToken());
+        yield put({type:'setUser',payload:res})
+      } catch (error) {
+        
+      }
     },
     *stat({payload},{call,put}){
       let res = yield call(()=>userServer.stat());
