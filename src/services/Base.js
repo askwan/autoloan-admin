@@ -8,9 +8,10 @@ export default class Base {
   get(name, options, header = {}) {
     let url = this.url + name;
     return new Promise((resolve, reject) => {
-      this.createAxiosInstance().get(url, {
-        params: options,
-        header
+      // axios
+      this.createAxiosInstance(header)
+      .get(url, {
+        params: options
       })
         .then(res => {
           if (res.status === 200) {
@@ -141,13 +142,15 @@ export default class Base {
     let hash = window.location.hash;
 
     if( !hash.includes('login') && !hash.includes('regist')){
-      if(!token) window.location.href = window.location.origin + window.location.pathname + '#/login';
+      if(!token){
+        window.location.href = window.location.origin + window.location.pathname + '#/login';
+        return ''
+      } 
+      
     };
-    if(typeof token !== "string") return ''
-    // if(!token){
-    //   return ""
-    // }
-    return token;
+    // console.log(token,'fdsfsdf')
+    // if(typeof token !== "string") return '';
+    return String(token);
   }
 
   toformdata(option) {
@@ -161,7 +164,6 @@ export default class Base {
     let headers = {
       token: this.getToken()
     };
-
     Object.assign(headers, this.header, option);
     
     return axios.create({

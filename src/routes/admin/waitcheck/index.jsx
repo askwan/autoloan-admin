@@ -102,7 +102,7 @@ export class index extends Component {
       render:(type,item)=>{
         let obj = getType(type);
         // return <span className="pointer" onClick={()=>this.selectIt(item)}>{getType(type).name}</span>
-        return <div className="flex-center"><Tag color={obj.color} onClick={()=>this.selectIt(item)}>{obj.name}</Tag></div>
+        return <div className="flex-center pointer"><Tag className="pointer" color={obj.color} onClick={()=>this.selectIt(item)}>{obj.name}</Tag></div>
       }
     },{
       title:'操作',

@@ -75,14 +75,14 @@ export class index extends Component {
       {key:'buyer',tab:'购车人',component:<LoanUser order={order} />},
       {key:'mateinfo',tab:'配偶信息',component:<Spouse order={order} />},
       {key:'carinfo',tab:'车辆信息',component:<CarInfo order={order} />},
-      {key:'bondman',tab:'联系人信息',component:<EmergencyContacts order={order} />}
+      {key:'bondman',tab:'紧急联系人',component:<EmergencyContacts order={order} />}
     ];
 
     return (
       <Modal width={800} maskClosable visible={visible} onOk={this.handleOk} onCancel={this.handleClose} title={title}
         footer={[Footer]}
       >
-        <Tabs defaultActiveKey='buyer'>
+        <Tabs defaultActiveKey='baseinfo'>
           {
             list.map(item=>(<Tabs.TabPane tab={item.tab} key={item.key}>
               <div className="detail-box">

@@ -23,7 +23,8 @@ export class index extends Component {
           dispatch({type:'global/login',payload:{resolve,values,reject}})
         }).then(res=>{
           window.localStorage.setItem('token',res.token);
-          history.push('/');
+          message.success('登陆成功');
+          history.push('/admin/home');
         }).catch(err=>{
           message.error(err.message);
         })
@@ -37,7 +38,7 @@ export class index extends Component {
         <div className="height-200"></div>
         <div className="login-box shadow pd-big">
           <div className="logo">
-            <img className="img-auto" src={logo} />
+            <img className="img-auto" src={logo} alt='加载失败' />
           </div>
           <Form onSubmit={this.login} {...formItemLayout}>
             <Form.Item label='用户名'>

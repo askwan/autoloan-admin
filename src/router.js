@@ -13,7 +13,7 @@ function RouterConfig({ history }) {
         <Route path="/admin" component={IndexPage} />
         <Route path='/login' exact component={Login} />
         <Route path='/regist' exact component={Regist} />
-        <Redirect from='/' to='/admin/home' />
+        <Redirect from='/' to='/login' />
         <Route path='*' component={NotFound} />
       </Switch>
     </Router>

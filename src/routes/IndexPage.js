@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import {Route, Link} from 'dva/router';
-import { Layout, Breadcrumb,Typography, Button } from 'antd';
+import { Layout, Breadcrumb,Typography, Button, message } from 'antd';
 
 import Left from '@/components/leftTabs'
 import Home from './admin/home'
@@ -21,6 +21,7 @@ class IndexPage extends React.Component {
   exit = ()=>{
     window.localStorage.clear();
     this.props.history.push('/login');
+    message.success('已退出');
   }
   render() {
     const {match,position} = this.props;

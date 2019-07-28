@@ -8,6 +8,7 @@ class OrderServer extends Base {
   }
   query(option){
     return new Promise((resolve,reject)=>{
+      Object.assign(option,{loadBaseInfo:true})
       this.get('/query',option).then(res=>{
         this._handle(resolve,reject,res,OrderInfo);
       }).catch(err=>reject(err));
