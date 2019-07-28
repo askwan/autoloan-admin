@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'dva'
 
 import DialogDetail from '@/components/dialogDetail'
-import { Table, Input, Tag } from 'antd';
+import { Table, Input, Tag, Button } from 'antd';
 import staticInfo from '@/script/static'
-
+import {orderServer} from '@/services'
 
 const getType = (type)=>{
   const {orderTypes} = staticInfo;
@@ -56,6 +56,9 @@ export class index extends Component {
       currentOrder:order
     })
   }
+  downloadIt=(order)=>{
+    window.open(orderServer.url+'/export?loadBaseInfo=true&id='+order.id)
+  }
   render() {
     const {list,filter} = this.props;
     let filters = staticInfo.orderTypes.map(el=>({value:el.id,text:el.name}))
@@ -100,6 +103,18 @@ export class index extends Component {
         let obj = getType(type);
         // return <span className="pointer" onClick={()=>this.selectIt(item)}>{getType(type).name}</span>
         return <div className="flex-center"><Tag color={obj.color} onClick={()=>this.selectIt(item)}>{obj.name}</Tag></div>
+      }
+    },{
+      title:'操作',
+      align:'cneter',
+      filters:filters,
+      render:(type,item)=>{
+        let obj = getType(type);
+        // return <span className="pointer" onClick={()=>this.selectIt(item)}>{getType(type).name}</span>
+        return <div className="flex-center">
+          <Button type='link' onClick={()=>this.selectIt(item)}>审核</Button>
+          <Button type='link' onClick={()=>this.downloadIt(item)}>下载</Button>
+        </div>
       }
     }]
     return (
