@@ -27,7 +27,7 @@ export class Spouse extends Component {
             <span>{spouse.idnumber}</span>
           </Form.Item>
           <Form.Item label="户籍归属地">
-            <span>{spouse.familyAddress}</span>
+            <span>{spouse.familyAddress}&nbsp;{spouse.familyAddressDetail}</span>
           </Form.Item>
           <Form.Item label="手机号">
             <span>{spouse.phone}</span>

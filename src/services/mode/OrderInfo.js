@@ -22,8 +22,8 @@ export default class Order extends Base {
     this.spouse = new Spouse(option.spouse);
     this.companyInfo = new CompanyInfo(option.companyInfo);
     this.carInfo = new CarInfo(option.carInfo);
-    this.orderType = option.orderType||1;
-    this.deleteFlag =  option.orderType||false;
+    this.orderType = option.orderType || '';
+    this.deleteFlag =  false;
     this.repulseCount = option.repulseCount;
     this.repulseReason = option.repulseReason;
     this.repulseType = option.repulseType;

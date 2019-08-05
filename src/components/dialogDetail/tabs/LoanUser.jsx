@@ -28,7 +28,7 @@ export class LoanUser extends Component {
           <Form.Item label="借款用途">
             <span>{utils.getpurpose(loanUser.purpose).name}</span>
           </Form.Item>
-          <Form.Item label="借款金额">
+          <Form.Item label="借款金额（万）">
             <span>{loanUser.amount}</span>
           </Form.Item>
           <Form.Item label="学历">
@@ -47,19 +47,16 @@ export class LoanUser extends Component {
             <span>{loanUser.idnumber}</span>
           </Form.Item>
           <Form.Item label="户籍归属地">
-            <span>{loanUser.familyAddress}</span>
+            <span>{loanUser.familyAddress}&nbsp;{loanUser.familyAddressDetail}</span>
           </Form.Item>
           <Form.Item label="银行卡号">
             <span>{loanUser.cardNumber}</span>
           </Form.Item>
           <Form.Item label="开户行">
-            <span>{utils.getCarBank(loanUser.cardBank).name}</span>
-          </Form.Item>
-          <Form.Item label="居住证地址">
-            <span>{loanUser.address}</span>
+            <span>{loanUser.cardBank}</span>
           </Form.Item>
           <Form.Item label="实际居住地址">
-            <span>{loanUser.realAddress}</span>
+            <span>{loanUser.realAddressArea}&nbsp;{loanUser.realAddress}</span>
           </Form.Item>
           <Form.Item label="家庭固定电话">
             <span>{loanUser.familyPhone}</span>
@@ -72,6 +69,12 @@ export class LoanUser extends Component {
           </Form.Item>
           <Form.Item label="住房情况">
             <span>{utils.getHouseType(loanUser.houseType).name}</span>
+          </Form.Item>
+          <Form.Item label="房屋地址">
+            <span>{loanUser.houseAddressArea}&nbsp;{loanUser.houseAddress}</span>
+          </Form.Item>
+          <Form.Item label="房屋面积（平方米）">
+            <span>{loanUser.houseSpace}</span>
           </Form.Item>
         </Form>
       </div>

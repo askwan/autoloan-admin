@@ -23,6 +23,10 @@ export default class Spouse extends Base {
      * 户籍归属地
      */
     this.familyAddress = '请选择';
+	/**
+	 * 户籍归属地详细地址
+	 */
+	this.familyAddressDetail = '';
     /**
      * 手机号
      */

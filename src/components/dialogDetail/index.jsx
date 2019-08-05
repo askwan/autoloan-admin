@@ -7,6 +7,7 @@ import LoanUser from './tabs/LoanUser';
 import Spouse from './tabs/Spouse';
 import CarInfo from './tabs/CarInfo';
 import EmergencyContacts from './tabs/EmergencyContacts';
+import CompanyInfo from './tabs/CompanyInfo';
 
 export class index extends Component {
   state={
@@ -36,9 +37,8 @@ export class index extends Component {
     }).then(res=>{
       message.success('审核成功');
       dispatch({type:'order/reload'});
-      this.close();
+      this.handleClose();
     }).catch(err=>{
-      this.close();
       message.error(err.message);
     })
   }
@@ -55,11 +55,10 @@ export class index extends Component {
         reject:reject
       }})
     }).then(res=>{
-      message.success('审核成功');
+      message.success('已提交');
       dispatch({type:'order/reload'});
-      this.close();
+      this.handleClose();
     }).catch(err=>{
-      this.close();
       message.error(err.message);
     })
   }
@@ -74,6 +73,7 @@ export class index extends Component {
       {key:'baseinfo',tab:'基本信息',component:<BaseInfo order={order} />},
       {key:'buyer',tab:'购车人',component:<LoanUser order={order} />},
       {key:'mateinfo',tab:'配偶信息',component:<Spouse order={order} />},
+      {key:'companyinfo',tab:'单位信息',component:<CompanyInfo order={order} />},
       {key:'carinfo',tab:'车辆信息',component:<CarInfo order={order} />},
       {key:'bondman',tab:'紧急联系人',component:<EmergencyContacts order={order} />}
     ];

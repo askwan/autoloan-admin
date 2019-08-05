@@ -53,6 +53,15 @@ export default class LoanUser extends Base {
      * 居住证地址
      */
     this.address = '请选择';
+	/**
+	 * 居住详细地址
+	 */
+	this.addressDetail = '';
+	/**
+	 * 居住区域
+	 */
+	this.realAddressArea = '请选择';
+	
     /**
      * 实际居住地址
      */
@@ -61,6 +70,10 @@ export default class LoanUser extends Base {
      * 家庭固定电话
      */
     this.familyPhone = '';
+	/**
+	 * 户籍归属地详细地址
+	 */
+	this.familyAddressDetail = '';
     /**
      * 单位固定电话
      */
@@ -77,6 +90,12 @@ export default class LoanUser extends Base {
 	 * 住房情况
 	 */
 	this.houseType = 1;
+	
+	/**
+	 * 房屋所在区域
+	 */
+	this.houseAddressArea = '请选择';
+	
 	/**
 	 * 房屋地址
 	 */

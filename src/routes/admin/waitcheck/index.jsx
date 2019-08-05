@@ -107,13 +107,12 @@ export class index extends Component {
     },{
       title:'操作',
       align:'cneter',
-      filters:filters,
       render:(type,item)=>{
         let obj = getType(type);
         // return <span className="pointer" onClick={()=>this.selectIt(item)}>{getType(type).name}</span>
         return <div className="flex-center">
           <Button type='link' onClick={()=>this.selectIt(item)}>审核</Button>
-          <Button type='link' onClick={()=>this.downloadIt(item)}>下载</Button>
+          <Button type='link' onClick={()=>this.downloadIt(item)}>导出</Button>
         </div>
       }
     }]

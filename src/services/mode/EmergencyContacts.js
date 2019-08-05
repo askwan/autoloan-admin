@@ -4,6 +4,7 @@ class People {
 		this.name = '';
 		this.relation = '';
 		this.companyName = '';
+		this.addressArea = '请选择';
 		this.phone = '';
 		Object.assign(this,option)
 	}

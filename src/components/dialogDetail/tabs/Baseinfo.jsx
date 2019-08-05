@@ -41,15 +41,16 @@ export class BaseInfo extends Component {
     let car = baseInfo.car || [];
     let lawNet = baseInfo.lawNet || [];
     let travelLicense = baseInfo.travelLicense || [];
-
+    let contract = baseInfo.contract || [];
     return (
       <div>
         <Form {...formLayout}>
-          <ListPlu list={authorization} title="授权书" />
-          <ListPlu list={lawNet} title="人法网" />
-          <ListPlu list={bankCard} title="银行卡" />
+          <ListPlu list={authorization} title="初审录单" />
+          <ListPlu list={lawNet} title="个人记录及车辆违章" />
+          <ListPlu list={bankCard} title="主贷人附件" />
           <ListPlu list={car} title="车辆照片" />
-          <ListPlu list={travelLicense} title="行驶证" />
+          <ListPlu list={travelLicense} title="车辆所有权证明" />
+          <ListPlu list={contract} title="合同上传" />
         </Form>
       </div>
     )

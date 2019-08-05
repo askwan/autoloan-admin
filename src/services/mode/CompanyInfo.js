@@ -11,6 +11,10 @@ export default class CompanyInfo extends Base {
      * 单位电话
      */
     this.companyPhone = '';
+	/**
+	 * 单位所在区域
+	 */
+	this.companyAddressArea = '请选择';
     /**
      * 单位地址
      */
