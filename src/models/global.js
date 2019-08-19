@@ -16,7 +16,6 @@ export default {
       history.listen(location=>{
         let path = location.pathname;
         let position = '';
-        
         if(path === '/admin/home'){
           dispatch({type:'stat'})
         }else if(path === '/admin/addtocheck'){
@@ -65,7 +64,6 @@ export default {
     },
     *stat({payload},{call,put}){
       let res = yield call(()=>userServer.stat());
-      console.log(res);
       yield put({type:'setStat',payload:res});
     }
   },

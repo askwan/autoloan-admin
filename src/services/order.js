@@ -37,6 +37,12 @@ class OrderServer extends Base {
       }).catch(err=>reject(err));
     })
   }
+  deleteOrder(option={}){
+    return new Promise((resolve,reject)=>{
+      let formdata = this.toformdata(option);
+      this.post('/delete',formdata).then(res=>this._handle(resolve,reject,res)).catch(err=>reject(err));
+    })
+  }
 }
 
 export default new OrderServer();

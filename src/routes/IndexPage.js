@@ -16,7 +16,7 @@ class IndexPage extends React.Component {
     this.props.dispatch({type:'global/checkoutToken'})
   }
   goBack = ()=>{
-    this.props.history.push('/')
+    this.props.history.push('/admin/home')
   }
   exit = ()=>{
     window.localStorage.clear();

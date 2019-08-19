@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'dva'
 
 import DialogDetail from '@/components/dialogDetail'
-import { Table, Input, Tag, Button } from 'antd';
+import { Table, Input, Tag, Button, Modal } from 'antd';
 import staticInfo from '@/script/static'
 import {orderServer} from '@/services'
 
@@ -59,45 +59,61 @@ export class index extends Component {
   downloadIt=(order)=>{
     window.open(orderServer.url+'/export?loadBaseInfo=true&id='+order.id)
   }
+  deleteIt=(order)=>{
+    Modal.confirm({
+      title:'提示',
+      content:`是否删除订单：${order.id}`,
+      onOk:()=>{
+        const {dispatch,filter} = this.props;
+        dispatch({type:'order/deleteOrder',payload:{orderId:order.id}}).then(res=>{
+          dispatch({type:'order/getList',payload:{option:filter}})
+        }).catch(err=>{
+          console.log(err,'err')
+        })
+      },
+      maskClosable:true
+    })
+    
+  }
   render() {
     const {list,filter} = this.props;
     let filters = staticInfo.orderTypes.map(el=>({value:el.id,text:el.name}))
     const column = [{
       title:'订单号',
       dataIndex:'id',
-      align:'cneter',
+      align:'left',
     },{
       title:'客户姓名',
-      align:'cneter',
+      align:'center',
       dataIndex:'loanUser.username'
     },{
       title:'性别',
-      align:'cneter',
+      align:'center',
       dataIndex:'loanUser.sex'
     },{
       title:'贷款金额',
-      align:'cneter',
+      align:'center',
       dataIndex:'loanUser.amount'
     },{
       title:'身份证',
-      align:'cneter',
+      align:'left',
       dataIndex:'loanUser.idnumber'
     },{
       title:'手机号',
-      align:'cneter',
+      align:'left',
       dataIndex:'loanUser.phone'
     },{
       title:'单位',
-      align:'cneter',
+      align:'center',
       dataIndex:'companyInfo.companyName'
     },{
-      title:'贷款银行',
+      title:'助贷机构',
       align:'cneter',
       dataIndex:'loanUser.cardBank'
     },{
       title:'状态',
       dataIndex:'orderType',
-      align:'cneter',
+      align:'center',
       filters:filters,
       render:(type,item)=>{
         let obj = getType(type);
@@ -106,13 +122,14 @@ export class index extends Component {
       }
     },{
       title:'操作',
-      align:'cneter',
+      align:'center',
       render:(type,item)=>{
         let obj = getType(type);
         // return <span className="pointer" onClick={()=>this.selectIt(item)}>{getType(type).name}</span>
         return <div className="flex-center">
           <Button type='link' onClick={()=>this.selectIt(item)}>审核</Button>
           <Button type='link' onClick={()=>this.downloadIt(item)}>导出</Button>
+          <Button type='link' onClick={()=>this.deleteIt(item)}>删除</Button>
         </div>
       }
     }]
@@ -122,7 +139,7 @@ export class index extends Component {
         <div className="mg-bottom-big">
           <Input.Search placeholder="请输入订单号、贷款人姓名" onChange={this.changeSearch} onSearch={this.startSearch} onBlur={this.startSearch} />
         </div>
-        <Table columns={column} dataSource={list} rowKey="id"
+        <Table bordered columns={column} dataSource={list} rowKey="id"
           pagination={{
             pageSize:filter.pageSize,
             current:filter.pageNum,

@@ -23,9 +23,6 @@ export default {
   },
 
   effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
-    },
     *getList({payload},{call,put}){
       if(!payload.option.orderTypes) payload.option.orderTypes = '32,2,8,4';
       let res = yield call(()=>orderServer.query(payload.option));
@@ -53,6 +50,10 @@ export default {
         return state.order.filter;
       });
       yield put({type:'getList',payload:{option:filter}})
+    },
+    *deleteOrder({payload},{call,put}){
+      let res = yield call(()=>orderServer.deleteOrder(payload));
+      console.log(res,'res')
     }
   },
 
